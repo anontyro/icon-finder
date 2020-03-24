@@ -1,8 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useDispatch } from "react-redux";
+import * as searchActions from "./redux/modules/search/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(searchActions.searchMovie("batman"));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
