@@ -1,0 +1,5 @@
+export const SEARCHING_MOVIE = "SEARCHING_MOVIE";
+export type SEARCHING_MOVIE = typeof SEARCHING_MOVIE;
+
+export const SEARCHED_MOVIE = "SEARCHED_MOVIE";
+export type SEARCHED_MOVIE = typeof SEARCHED_MOVIE;
