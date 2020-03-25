@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Footer from "./components/Footer";
+import COLORS from "../../data/colors";
 
 const PageHeader = styled.h1`
   width: 100%;
@@ -13,7 +15,6 @@ const PageContainer = styled.div`
   flex-direction: column;
   width: 75%;
   margin: auto;
-  height: 100%;
 `;
 
 const NavBar = styled.div`
@@ -32,9 +33,12 @@ const NavLink = styled(({ isActive, ...rest }) => <Link {...rest} />)<
 >`
   padding: 0 10px;
   cursor: ${(props: NavLinkProps) => (props.isActive ? "unset" : "pointer")};
-  ${(props: NavLinkProps) => (props.isActive ? `color: blue` : "")};
+  ${(props: NavLinkProps) =>
+    props.isActive ? `color: ${COLORS.DEFAULT_HOVER}` : ""};
+  ${(props: NavLinkProps) => (props.isActive ? `font-weight: 800` : "")};
+
   :hover {
-    color: blue;
+    color: ${COLORS.DEFAULT_HOVER};
   }
 `;
 
@@ -44,14 +48,20 @@ interface Props {
 }
 
 const PageLayout: React.FC<Props> = ({ header, children }) => {
+  const { pathname } = useLocation();
   return (
     <React.Fragment>
       <NavBar>
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/favourites"}>Favourites</NavLink>
+        <NavLink isActive={pathname === "/"} to={"/"}>
+          Home
+        </NavLink>
+        <NavLink isActive={pathname === "/favourites"} to={"/favourites"}>
+          Favourites
+        </NavLink>
       </NavBar>
       {header && <PageHeader>{header}</PageHeader>}
-      <PageContainer>{children}</PageContainer>
+      <PageContainer className="content">{children}</PageContainer>
+      <Footer />
     </React.Fragment>
   );
 };
