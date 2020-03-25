@@ -56,8 +56,8 @@ export const searchMovie = (query: string, page: number = 1) => {
     getState: any
   ) => {
     const state: RootState = getState();
-    const { results } = state.searchMovie;
-    if (results.length > 0) {
+    const { results, lastQuery } = state.searchMovie;
+    if (results.length > 0 && lastQuery === query) {
       return;
     }
     dispatch(searchingMovie());
