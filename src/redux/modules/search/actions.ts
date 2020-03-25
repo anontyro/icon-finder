@@ -22,9 +22,9 @@ const fetchData = async (
   query: string,
   page: number = 1
 ): Promise<BaseMovieSearchState> => {
-  const url = `${BASE_URI}${MOVIE_SEARCH}?api_key=${MOVIE_DB_KEY_V3}&&query=${encodeURI(
+  const url = `${BASE_URI}${MOVIE_SEARCH}?api_key=${MOVIE_DB_KEY_V3}&query=${encodeURI(
     query
-  )}&&page=${page}`;
+  )}&page=${page}`;
   try {
     const response: any = await fetch(url);
     const json: MovieSearchResponse = await response.json();
