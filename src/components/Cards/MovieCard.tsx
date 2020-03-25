@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHollowHeart } from "@fortawesome/free-regular-svg-icons";
 import { MovieItem } from "../../redux/modules/search/search";
 import { POSTER_ROOT_PATH } from "../../data/movieDbValues";
 import * as userActions from "../../redux/modules/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import SocialLink from "../Social/SocialLink";
 
 const CardContainer = styled.div`
+  position: relative;
   margin: 10px;
   width: 200px;
   height: 300px;
@@ -19,6 +23,8 @@ const CardImage = styled.img`
   margin: auto;
   display: flex;
 `;
+
+const SocialContainer = styled.div``;
 
 const CardTitleContainer = styled.div`
   display: flex;
@@ -63,11 +69,19 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       <CardImage src={`${POSTER_ROOT_PATH}${movie.poster_path}`} />
       <CardTitleContainer>
         <CardHeader>{movie.title}</CardHeader>
-        {isFavourite ? (
-          <button onClick={() => onClickRemoveFav(movie.id)}>-Fav</button>
-        ) : (
-          <button onClick={() => onClickAddFav(movie)}>Fav</button>
-        )}
+        <SocialContainer>
+          {isFavourite ? (
+            <SocialLink
+              icon={faSolidHeart}
+              onClick={() => onClickRemoveFav(movie.id)}
+            />
+          ) : (
+            <SocialLink
+              icon={faHollowHeart}
+              onClick={() => onClickAddFav(movie)}
+            />
+          )}
+        </SocialContainer>
       </CardTitleContainer>
     </CardContainer>
   );
