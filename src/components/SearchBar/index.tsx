@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as searchActions from "../../redux/modules/search/actions";
 import debounce from "lodash.debounce";
+import { RootState } from "../../redux";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ interface SearchProps {}
 
 const Search: React.FC<SearchProps> = ({}) => {
   const dispatch = useDispatch();
+  const isBusy = useSelector((state: RootState) => state.searchMovie.isBusy);
   const [query, setQuery] = useState("");
 
   const debounceSearch = useCallback(
@@ -37,6 +39,7 @@ const Search: React.FC<SearchProps> = ({}) => {
   return (
     <SearchContainer>
       <SearchBox
+        disabled={isBusy}
         value={query}
         onChange={e => {
           e.persist();
