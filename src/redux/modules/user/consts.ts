@@ -1,5 +1,11 @@
-export const SET_USER = 'SET_USER';
+export const SET_USER = "SET_USER";
 export type SET_USER = typeof SET_USER;
 
-export const RESET_USER = 'RESET_USER';
+export const RESET_USER = "RESET_USER";
 export type RESET_USER = typeof RESET_USER;
+
+export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
+export type ADD_TO_FAVOURITES = typeof ADD_TO_FAVOURITES;
+
+export const REMOVE_FROM_FAVOURITES = "REMOVE_FROM_FAVOURITES";
+export type REMOVE_FROM_FAVOURITES = typeof REMOVE_FROM_FAVOURITES;
