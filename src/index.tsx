@@ -9,6 +9,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import rootReducer from "./redux";
 import HomePage from "./pages/Home";
+import FavouritesPage from "./pages/Favourites";
 
 const store = createStore(
   rootReducer,
@@ -19,6 +20,7 @@ ReactDOM.render(
   <Router>
     <Provider store={store}>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/favourites" component={FavouritesPage} />
     </Provider>
   </Router>,
   document.getElementById("root")
