@@ -26,7 +26,7 @@ const SearchBox = styled.input`
 
 interface SearchProps {}
 
-const Search: React.FC<SearchProps> = ({}) => {
+const Search: React.FC<SearchProps> = () => {
   const dispatch = useDispatch();
   const isBusy = useSelector((state: RootState) => state.searchMovie.isBusy);
   const [query, setQuery] = useState("");
